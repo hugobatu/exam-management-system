@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.group2.hcmus.exammanagementsystem.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" prefHeight="586.0" prefWidth="776.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Text stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hệ thống quản lý đăng kí thi chứng chỉ" />
+      <TextField prefHeight="0.0" prefWidth="775.0" />
+      <TextField />
+      <Button fx:id="logIn" mnemonicParsing="false" onAction="#loginButtonClick" text="Đăng nhập" />
+      <Text fx:id="status" onDragDetected="#loginButtonClick" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="136.6666603088379" />
+   </children>
 </VBox>
