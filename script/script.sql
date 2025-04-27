@@ -1,7 +1,46 @@
-create database exam_management_system;
+DROP SCHEMA IF EXISTS exam_management_schema CASCADE;
+SET search_path TO exam_management_schema;
 create schema exam_management_schema;
 set search_path to exam_management_schema;
 
+-- table account
+-- Drop tables in reverse order of dependencies
+drop table if exists BangTinh cascade;
+drop table if exists KetQuaThi cascade;
+drop table if exists ChiTietDangKy cascade;
+drop table if exists LichThi cascade;
+drop table if exists GiamThi cascade;
+drop table if exists GiaHan cascade;
+drop table if exists PhieuDuThi cascade;
+drop table if exists DanhSachThi cascade;
+drop table if exists PhongThi cascade;
+drop table if exists ThiSinh cascade;
+drop table if exists HoaDon cascade;
+drop table if exists ThanhToan cascade;
+drop table if exists PhieuDangKy cascade;
+drop table if exists KhachHang cascade;
+drop table if exists NhanVien cascade;
+drop table if exists PhongBan cascade;
+drop table if exists Account cascade;
+drop table if exists ChungChi cascade;
+
+create table Account (
+    username VARCHAR(255) PRIMARY KEY,
+    hashed_password VARCHAR(255) NOT NULL,
+    account_type VARCHAR(10),
+    salt VARCHAR(255) NOT null
+);
+create table PhongBan(
+	ma_phong_ban serial primary key,
+	ten_phong_ban VARCHAR(100)
+);
+create table NhanVien(
+	ma_nhan_vien serial primary key,
+	ma_phong_ban int,
+	username VARCHAR(255),
+	foreign key (ma_phong_ban) references PhongBan(ma_phong_ban),
+	foreign key (username) references Account(username)
+);
 -- table KhachHang
 create table KhachHang (
     ma_khach_hang serial primary key,
@@ -9,7 +48,9 @@ create table KhachHang (
     ho_ten varchar(255),
     so_dien_thoai varchar(15),
     email varchar(255),
-    dia_chi text
+    dia_chi text,
+    username VARCHAR(255),
+    foreign key (username) references Account(username)
 );
 -- table PhieuDangKy
 create table PhieuDangKy (
@@ -18,8 +59,10 @@ create table PhieuDangKy (
 	ngay_dang_ky date,
     trang_thai_thanh_toan varchar(50),
     ghi_chu text,
+    nhan_vien_tiep_nhan int,
     primary key (ma_phieu_dang_ky),
-    foreign key (ma_khach_hang) references KhachHang(ma_khach_hang)
+    foreign key (ma_khach_hang) references KhachHang(ma_khach_hang),
+    foreign key (nhan_vien_tiep_nhan) references NhanVien(ma_nhan_vien)
 );
 -- table ThanhToan
 create table ThanhToan(
@@ -29,8 +72,10 @@ create table ThanhToan(
 	hinh_thuc_thanh_toan varchar(50),
 	tien_giam_gia decimal(12, 3),
 	so_tien decimal(12, 3),
+	nhan_vien_thanh_toan int,
 	primary key (ma_thanh_toan),
-	foreign key (ma_phieu_dang_ky) references PhieuDangKy(ma_phieu_dang_ky)
+	foreign key (ma_phieu_dang_ky) references PhieuDangKy(ma_phieu_dang_ky),
+	foreign key (nhan_vien_thanh_toan) references NhanVien(ma_nhan_vien)
 );
 -- table HoaDon
 create table HoaDon(
@@ -39,7 +84,7 @@ create table HoaDon(
 	primary key (ma_hoa_don),
 	foreign key (ma_thanh_toan) references ThanhToan(ma_thanh_toan)
 );
--- table ThiSInh
+-- table ThiSinh
 create table ThiSinh(
 	ma_thi_sinh serial,
 	ma_khach_hang int,
@@ -82,8 +127,10 @@ create table GiaHan (
 	li_do_gia_han varchar(50),
 	trang_thai_gia_han varchar(50),
 	phi_gia_han decimal(12, 3),
+	nhan_vien_lap_phieu int,
 	primary key (ma_gia_han),
-	foreign key (ma_phieu_du_thi) references PhieuDuThi(ma_phieu_du_thi)
+	foreign key (ma_phieu_du_thi) references PhieuDuThi(ma_phieu_du_thi),
+	foreign key (nhan_vien_lap_phieu) references NhanVien(ma_nhan_vien)
 );
 -- table GiamThi
 create table GiamThi (

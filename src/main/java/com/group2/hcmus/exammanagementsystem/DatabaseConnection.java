@@ -1,4 +1,4 @@
-package com.group2.hcmus.exammanagementsystem.repository;
+package com.group2.hcmus.exammanagementsystem;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -16,4 +16,5 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
 }
