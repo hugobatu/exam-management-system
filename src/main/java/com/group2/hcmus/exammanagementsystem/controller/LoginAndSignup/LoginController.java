@@ -99,7 +99,7 @@ public class LoginController {
                         if ("admin".equalsIgnoreCase(this.role)) {
                             sp.loadScene("/them/file/path/vao/day", "Admin Dashboard", btnLogin);
                         } else if ("KH".equalsIgnoreCase(this.role)) {
-                            sp.loadScene("/them/file/path/vao/day", "KhacHang Dashboard", btnLogin);
+                            sp.loadScene("/com/group2/hcmus/exammanagementsystem/KHACH_HANG/TU_DO/dangky_1.fxml", "KhachHang Dashboard", btnLogin);
                         } else if ("NVTN".equalsIgnoreCase(this.role)) {
                             sp.loadScene("/them/file/path/vao/day", "NhanVienTiepNhan Dashboard", btnLogin);
                         } else {
