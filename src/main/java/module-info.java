@@ -12,6 +12,6 @@ module com.group2.hcmus.exammanagementsystem {
     opens com.group2.hcmus.exammanagementsystem.controller.LoginAndSignup to javafx.fxml;
     exports com.group2.hcmus.exammanagementsystem.controller.LoginAndSignup;
 
-    opens com.group2.hcmus.exammanagementsystem.controller.KHACH_HANG.TU_DO to javafx.fxml;
-    exports com.group2.hcmus.exammanagementsystem.controller.KHACH_HANG.TU_DO;
+    opens com.group2.hcmus.exammanagementsystem.controller.IndependentCustomerController to javafx.fxml;
+    exports com.group2.hcmus.exammanagementsystem.controller.IndependentCustomerController;
 }

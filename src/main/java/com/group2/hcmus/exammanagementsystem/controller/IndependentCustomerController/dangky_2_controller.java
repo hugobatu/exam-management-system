@@ -1,4 +1,4 @@
-package com.group2.hcmus.exammanagementsystem.controller.KHACH_HANG.TU_DO;
+package com.group2.hcmus.exammanagementsystem.controller.IndependentCustomerController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
