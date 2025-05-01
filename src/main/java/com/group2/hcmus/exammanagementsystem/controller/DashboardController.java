@@ -61,7 +61,7 @@ public class DashboardController {
                 sidebarButtons.add(createButton("Nhập kết quả", "#NhapKetQua"));
                 break;
             case "Khao thi":
-            case "Quan tri":
+            case "Admin":
                 sidebarButtons.add(createButton("Thanh toán", "#ThanhToan"));
                 break;
         }

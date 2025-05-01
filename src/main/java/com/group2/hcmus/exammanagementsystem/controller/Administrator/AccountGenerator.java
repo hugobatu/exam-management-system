@@ -1,4 +1,4 @@
-package com.group2.hcmus.exammanagementsystem.controller.Admin;
+package com.group2.hcmus.exammanagementsystem.controller.Administrator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
