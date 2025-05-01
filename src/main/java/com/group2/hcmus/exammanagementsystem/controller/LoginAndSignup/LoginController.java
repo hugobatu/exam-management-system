@@ -18,13 +18,12 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    private String role;
-    private String username;
+    private static String role;
+    private static String username;
 
     @FXML private TextField tfUsername;
     @FXML private PasswordField tfPassword;
     @FXML private Button btnLogin;
-    @FXML private Button btnSignup;
 
     @FXML
     public void initialize() {
@@ -41,19 +40,6 @@ public class LoginController {
             scaleUp.setToY(1.0);
             scaleUp.play();
         });
-
-        btnSignup.setOnMousePressed(event -> {
-            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(100), btnSignup);
-            scaleDown.setToX(0.95);
-            scaleDown.setToY(0.95);
-            scaleDown.play();
-        });
-        btnSignup.setOnMouseReleased(event -> {
-            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(100), btnSignup);
-            scaleUp.setToX(1.0);
-            scaleUp.setToY(1.0);
-            scaleUp.play();
-        });
     }
 
     @FXML
@@ -61,10 +47,6 @@ public class LoginController {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
         login(username, password);
-    }
-    @FXML private void onSignup(ActionEvent event) {
-        SupportingUtilities sp = new SupportingUtilities();
-        sp.loadScene("/com/group2/hcmus/exammanagementsystem/Signup.fxml", "Signing up", btnSignup);
     }
 
     public void login(String username, String password) {
@@ -95,16 +77,7 @@ public class LoginController {
                         this.username = username;
 
                         sp.showAlert("Logged in as: " + this.username + " with role: " + this.role);
-
-                        if ("admin".equalsIgnoreCase(this.role)) {
-                            sp.loadScene("/them/file/path/vao/day", "Admin Dashboard", btnLogin);
-                        } else if ("KH".equalsIgnoreCase(this.role)) {
-                            sp.loadScene("/com/group2/hcmus/exammanagementsystem/KHACH_HANG/TU_DO/dangky_1.fxml", "KhachHang Dashboard", btnLogin);
-                        } else if ("NVTN".equalsIgnoreCase(this.role)) {
-                            sp.loadScene("/them/file/path/vao/day", "NhanVienTiepNhan Dashboard", btnLogin);
-                        } else {
-                            sp.showAlert("Unknown role, cannot divide screen.");
-                        }
+                        sp.loadScene("/com/group2/hcmus/exammanagementsystem/Dashboard.fxml", "Application", btnLogin);
                     } else {
                         sp.showAlert("Role not found.");
                     }
@@ -119,4 +92,6 @@ public class LoginController {
             sp.showAlert("Error: " + e.getMessage());
         }
     }
+    public static String getRole() {return role;};
+    public static String getUsername() {return username;};
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.controller.DashboardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="434.0" layoutY="119.0" prefHeight="60.0" prefWidth="200.0" style="-fx-padding: 10;" />
+      <AnchorPane prefHeight="700.0" prefWidth="210.0" style="-fx-background-color: #66a6ff;">
+         <children>
+            <Label layoutX="9.0" layoutY="74.0" prefHeight="27.0" prefWidth="191.0" text="EXAM MANAGEMENT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="85.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../icon/Exam-Transparent.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="navBarContainer" layoutX="5.0" layoutY="122.0" prefHeight="300.0" prefWidth="200.0" />
+         </children>
+      </AnchorPane>
+      <StackPane fx:id="mainInfoContainer" layoutX="210.0" prefHeight="700.0" prefWidth="690.0" />
+   </children>
+</AnchorPane>

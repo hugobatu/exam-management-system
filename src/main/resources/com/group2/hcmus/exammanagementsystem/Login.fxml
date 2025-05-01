@@ -44,12 +44,6 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Text layoutX="50.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-            <Button fx:id="btnSignup" layoutX="185.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onSignup" style="-fx-background-color: #66a6ff;" text="Sign up" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

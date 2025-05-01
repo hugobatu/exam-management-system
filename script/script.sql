@@ -1,7 +1,6 @@
 DROP SCHEMA IF EXISTS exam_management_schema CASCADE;
 SET search_path TO exam_management_schema;
 create schema exam_management_schema;
-set search_path to exam_management_schema;
 
 -- table account
 -- Drop tables in reverse order of dependencies
@@ -48,9 +47,7 @@ create table KhachHang (
     ho_ten varchar(255),
     so_dien_thoai varchar(15),
     email varchar(255),
-    dia_chi text,
-    username VARCHAR(255),
-    foreign key (username) references Account(username)
+    dia_chi text
 );
 -- table PhieuDangKy
 create table PhieuDangKy (
@@ -61,8 +58,7 @@ create table PhieuDangKy (
     ghi_chu text,
     nhan_vien_tiep_nhan int,
     primary key (ma_phieu_dang_ky),
-    foreign key (ma_khach_hang) references KhachHang(ma_khach_hang),
-    foreign key (nhan_vien_tiep_nhan) references NhanVien(ma_nhan_vien)
+    foreign key (ma_khach_hang) references KhachHang(ma_khach_hang)
 );
 -- table ThanhToan
 create table ThanhToan(
@@ -129,8 +125,7 @@ create table GiaHan (
 	phi_gia_han decimal(12, 3),
 	nhan_vien_lap_phieu int,
 	primary key (ma_gia_han),
-	foreign key (ma_phieu_du_thi) references PhieuDuThi(ma_phieu_du_thi),
-	foreign key (nhan_vien_lap_phieu) references NhanVien(ma_nhan_vien)
+	foreign key (ma_phieu_du_thi) references PhieuDuThi(ma_phieu_du_thi)
 );
 -- table GiamThi
 create table GiamThi (
