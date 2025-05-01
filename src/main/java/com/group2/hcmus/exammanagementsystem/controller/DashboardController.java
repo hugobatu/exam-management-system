@@ -115,7 +115,7 @@ public class DashboardController {
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Receptionist/FreeRegistration/Step2.fxml")));
                 break;
             case "#LapPhieuGiaHan":
-                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/hcmus/exammanagement/LapPhieuGiaHan/lap-phieu-gia-han.fxml")));
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/LookUpExamCard.fxml")));
                 break;
             case "#NhapKetQua":
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/hcmus/exammanagement/CapChungChi/nhap-ket-qua.fxml")));

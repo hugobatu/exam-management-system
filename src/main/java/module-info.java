@@ -24,4 +24,10 @@ module com.group2.hcmus.exammanagementsystem {
 //    opens com.group2.hcmus.exammanagementsystem.controller.Receptionist.UnitRegistration;
 //    exports com.group2.hcmus.exammanagementsystem.controller.Receptionist.UnitRegistration to javafx.fxml;
 
+    exports com.group2.hcmus.exammanagementsystem.controller.AccountingStaff;
+    opens com.group2.hcmus.exammanagementsystem.controller.AccountingStaff to javafx.fxml;
+
+    exports com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils;
+    opens com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils to javafx.fxml;
+
 }
