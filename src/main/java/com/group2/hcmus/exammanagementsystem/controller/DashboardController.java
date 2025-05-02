@@ -60,9 +60,16 @@ public class DashboardController {
             case "Inputting":
                 sidebarButtons.add(createButton("Nhập kết quả", "#NhapKetQua"));
                 break;
-            case "Khao thi":
+            case "Examination":
+                sidebarButtons.add(createButton("Tra cứu bảng tính", "#LookUpSpreadsheet"));
+                sidebarButtons.add(createButton("Nhập liệu bảng tính", "#InputSpreadsheet"));
+                break;
             case "Admin":
-                sidebarButtons.add(createButton("Thanh toán", "#ThanhToan"));
+                sidebarButtons.add(createButton("Quản trị nhân viên", "#Staff"));
+                sidebarButtons.add(createButton("Quản trị khách hàng", "#Customer"));
+                sidebarButtons.add(createButton("Quản trị hóa đơn", "#Invoice"));
+                sidebarButtons.add(createButton("Quản trị phòng thi", "#Room"));
+                sidebarButtons.add(createButton("Quản trị chứng chỉ", "#Certificate"));
                 break;
         }
 
@@ -119,6 +126,21 @@ public class DashboardController {
                 break;
             case "#NhapKetQua":
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/hcmus/exammanagement/CapChungChi/nhap-ket-qua.fxml")));
+                break;
+            case "#Staff":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/StaffManagement.fxml")));
+                break;
+            case "#Customer":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/CustomerManagement.fxml")));
+                break;
+            case "#Invoice":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/InvoiceManagement.fxml")));
+                break;
+            case "#Room":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/RoomManagement.fxml")));
+                break;
+            case "#Certificate":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/CertificateManagement.fxml")));
                 break;
             default:
                 break;
