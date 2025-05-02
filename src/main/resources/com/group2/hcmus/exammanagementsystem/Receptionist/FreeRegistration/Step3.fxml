@@ -97,12 +97,11 @@
                                 <Font size="14.0" />
                             </font>
                         </Button>
-                  <CheckBox fx:id="ngoaingu" layoutX="126.0" layoutY="62.0" mnemonicParsing="false" onAction="#on_ngoaingu" text="Ngoại ngữ" />
-                  <CheckBox fx:id="tinhoc" layoutX="232.0" layoutY="62.0" mnemonicParsing="false" onAction="#on_tinhoc" text="Tin học" />
-                  <TableView layoutX="39.0" layoutY="178.0" prefHeight="230.0" prefWidth="580.0">
+                  <CheckBox fx:id="ngoaingu" layoutX="126.0" layoutY="62.0" mnemonicParsing="false" text="Ngoại ngữ" />
+                  <CheckBox fx:id="tinhoc" layoutX="232.0" layoutY="62.0" mnemonicParsing="false" text="Tin học" />
+                  <TableView fx:id="scheduleTable" layoutX="39.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="230.0" prefWidth="580.0">
                     <columns>
-                      <TableColumn fx:id="ngaythi" text="Ngày thi" />
-                      <TableColumn fx:id="giothi" prefWidth="60.0" text="Giờ thi" />
+                      <TableColumn fx:id="ngaygiothi" prefWidth="140.0" text="Ngày giờ thi" />
                         <TableColumn fx:id="diadiemthi" prefWidth="100.0" text="Địa điểm thi" />
                         <TableColumn fx:id="phongthi" prefWidth="90.0" text="Phòng thi" />
                         <TableColumn fx:id="sl_dangky" text="SL đã đk" />

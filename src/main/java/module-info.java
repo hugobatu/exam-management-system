@@ -5,6 +5,7 @@ module com.group2.hcmus.exammanagementsystem {
     requires com.dlsc.formsfx;
     requires io.github.cdimascio.dotenv.java;
     requires com.jfoenix;
+    requires java.desktop;
     opens com.group2.hcmus.exammanagementsystem to javafx.fxml;
     exports com.group2.hcmus.exammanagementsystem;
 

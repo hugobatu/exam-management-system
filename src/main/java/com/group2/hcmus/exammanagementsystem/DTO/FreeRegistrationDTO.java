@@ -1,5 +1,7 @@
 package com.group2.hcmus.exammanagementsystem.DTO;
 
+import java.time.LocalDate;
+
 public class FreeRegistrationDTO {
     private String hoTenNDK;
     private String sdtNDK;
@@ -7,7 +9,7 @@ public class FreeRegistrationDTO {
     private String diaChiNDK;
 
     private String hotenTS;
-    private String ngaySinh;
+    private LocalDate ngaySinh;
     private String sdtTS;
     private String emailTS;
     private String diaChiTS;
@@ -15,13 +17,15 @@ public class FreeRegistrationDTO {
     private String loaiCC;
 
     // From TableView (exam schedule selection)
-    private String ngayThi;
-    private String gioThi;
-    private String diaDiemThi;
-    private String phongThi;
-    private int slDangKy;
-    private int slToiDa;
-    private boolean luaChon; // whether this row is selected
+    private ScheduleListDTO schedule;
+
+    public ScheduleListDTO getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(ScheduleListDTO schedule) {
+        this.schedule = schedule;
+    }
 
     // === Getters and Setters ===
 
@@ -65,11 +69,11 @@ public class FreeRegistrationDTO {
         this.hotenTS = hotenTS;
     }
 
-    public String getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -105,59 +109,4 @@ public class FreeRegistrationDTO {
         this.loaiCC = loaiCC;
     }
 
-    public String getNgayThi() {
-        return ngayThi;
-    }
-
-    public void setNgayThi(String ngayThi) {
-        this.ngayThi = ngayThi;
-    }
-
-    public String getGioThi() {
-        return gioThi;
-    }
-
-    public void setGioThi(String gioThi) {
-        this.gioThi = gioThi;
-    }
-
-    public String getDiaDiemThi() {
-        return diaDiemThi;
-    }
-
-    public void setDiaDiemThi(String diaDiemThi) {
-        this.diaDiemThi = diaDiemThi;
-    }
-
-    public String getPhongThi() {
-        return phongThi;
-    }
-
-    public void setPhongThi(String phongThi) {
-        this.phongThi = phongThi;
-    }
-
-    public int getSlDangKy() {
-        return slDangKy;
-    }
-
-    public void setSlDangKy(int slDangKy) {
-        this.slDangKy = slDangKy;
-    }
-
-    public int getSlToiDa() {
-        return slToiDa;
-    }
-
-    public void setSlToiDa(int slToiDa) {
-        this.slToiDa = slToiDa;
-    }
-
-    public boolean isLuaChon() {
-        return luaChon;
-    }
-
-    public void setLuaChon(boolean luaChon) {
-        this.luaChon = luaChon;
-    }
 }

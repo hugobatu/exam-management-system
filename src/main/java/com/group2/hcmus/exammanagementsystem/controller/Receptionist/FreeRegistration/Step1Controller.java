@@ -15,7 +15,7 @@ public class Step1Controller {
     public void setMainContainer(StackPane mainContainer) {
         this.mainContainer = mainContainer;
     }
-    // step1
+
     @FXML private Button settings;
     @FXML private TextField tfDiaChi;
     @FXML private TextField tfEmail;
@@ -23,9 +23,14 @@ public class Step1Controller {
     @FXML private TextField tfSDT;
     @FXML private Button btnNext;
 
-    private FreeRegistrationDTO dto;
+    private FreeRegistrationDTO dto = new FreeRegistrationDTO();
     public void setRegistration(FreeRegistrationDTO dto) {
         this.dto = dto;
+
+        tfDiaChi.setText(dto.getDiaChiNDK());
+        tfEmail.setText(dto.getEmailNDK());
+        tfHoTen.setText(dto.getHoTenNDK());
+        tfSDT.setText(dto.getSdtNDK());
     }
 
     @FXML
@@ -34,12 +39,14 @@ public class Step1Controller {
         dto.setSdtNDK(tfSDT.getText());
         dto.setEmailNDK(tfEmail.getText());
         dto.setDiaChiNDK(tfDiaChi.getText());
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Receptionist/FreeRegistration/Step2.fxml"));
             Parent step2Root = loader.load();
 
             Step2Controller step2Controller = loader.getController();
             step2Controller.setMainContainer(mainContainer);
+            step2Controller.setRegistration(dto);
 
             mainContainer.getChildren().setAll(step2Root);
         } catch (IOException e) {
@@ -47,5 +54,6 @@ public class Step1Controller {
             new Alert(Alert.AlertType.ERROR, "Failed to load Step 2").showAndWait();
         }
     }
+
 
 }
