@@ -6,11 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -229,7 +233,6 @@ public class LookUpExamCardController implements Initializable{
     void handleSelect(ActionEvent event) {
         if (selectedExamCard != null) {
             // TODO: Implement logic to handle the selected exam card
-            // For example, open a detailed view of the exam card
             showAlert(Alert.AlertType.INFORMATION, "Thông báo",
                     "Đã chọn phiếu dự thi:\nMã phiếu: " + selectedExamCard.getMaPhieuDuThi() +
                             "\nSố báo danh: " + selectedExamCard.getSoBaoDanh() +
@@ -240,14 +243,30 @@ public class LookUpExamCardController implements Initializable{
     /* Handle next button click */
     @FXML
     void handleNext(ActionEvent event) {
-        if (selectedExamCard != null) {
-            // TODO: Pass the selected exam card to the next screen
-            showAlert(Alert.AlertType.INFORMATION, "Thông báo",
-                    "Tiếp tục với phiếu dự thi:\nMã phiếu: " + selectedExamCard.getMaPhieuDuThi() +
-                            "\nSố báo danh: " + selectedExamCard.getSoBaoDanh() +
-                            "\nThí sinh: " + selectedExamCard.getHoTen());
+        if (selectedExamCard == null) {
+            showAlert(Alert.AlertType.WARNING, "Thông báo", "Vui lòng chọn một phiếu dự thi.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/ExtensionTicket.fxml"));
+            Parent root = loader.load();
+
+            // Pass the selected exam card to the ExtensionTicketController
+            ExtensionTicketController controller = loader.getController();
+            controller.setExamCard(selectedExamCard);
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Gia hạn phiếu dự thi");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể mở màn hình gia hạn phiếu dự thi: " + e.getMessage());
         }
     }
+
 
     /* Handle cancel button click */
     @FXML
