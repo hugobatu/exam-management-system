@@ -1,6 +1,6 @@
 package com.group2.hcmus.exammanagementsystem.DAO;
 
-import com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils.ExamCard;
+import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
 import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
 
 import java.sql.*;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ExamCardDAO {
 
     /* Get exam card by ID */
-    public ExamCard getExamCardById(int maPhieuDuThi) {
+    public ExamCardDTO getExamCardById(int maPhieuDuThi) {
         String query = """
             SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
                    lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
@@ -28,7 +28,7 @@ public class ExamCardDAO {
             stmt.setInt(1, maPhieuDuThi);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new ExamCard(
+                    return new ExamCardDTO(
                             rs.getInt("ma_phieu_du_thi"),
                             rs.getInt("so_bao_danh"),
                             rs.getString("ho_ten"),

@@ -1,16 +1,16 @@
-package com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils;
+package com.group2.hcmus.exammanagementsystem.BUS;
 
+import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
 import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
+
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service {
+public class ExamCardBUS {
     // Search exam cards by ID
-    public List<ExamCard> searchByExamCardId(int maPhieuDuThi) {
-        List<ExamCard> result = new ArrayList<>();
+    public List<ExamCardDTO> searchByExamCardId(int maPhieuDuThi) {
+        List<ExamCardDTO> result = new ArrayList<>();
         String query = """
             SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
                    lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
@@ -38,8 +38,8 @@ public class Service {
     }
 
     // Search exam cards by exam registration number
-    public List<ExamCard> searchByRegistrationNumber(int soBaoDanh) {
-        List<ExamCard> result = new ArrayList<>();
+    public List<ExamCardDTO> searchByRegistrationNumber(int soBaoDanh) {
+        List<ExamCardDTO> result = new ArrayList<>();
         String query = """
             SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
                    lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
@@ -67,8 +67,8 @@ public class Service {
     }
 
     // Search exam cards by candidate name
-    public List<ExamCard> searchByName(String name) {
-        List<ExamCard> result = new ArrayList<>();
+    public List<ExamCardDTO> searchByName(String name) {
+        List<ExamCardDTO> result = new ArrayList<>();
         String query = """
             SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
                    lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
@@ -96,8 +96,8 @@ public class Service {
     }
 
     // Get all exam cards
-    public List<ExamCard> getAllExamCards() {
-        List<ExamCard> result = new ArrayList<>();
+    public List<ExamCardDTO> getAllExamCards() {
+        List<ExamCardDTO> result = new ArrayList<>();
         String query = """
             SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
                    lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
@@ -122,8 +122,8 @@ public class Service {
     }
 
     // Helper method to create ExamCard from ResultSet
-    private ExamCard createExamCardFromResultSet(ResultSet rs) throws SQLException {
-        return new ExamCard(
+    private ExamCardDTO createExamCardFromResultSet(ResultSet rs) throws SQLException {
+        return new ExamCardDTO(
                 rs.getInt("ma_phieu_du_thi"),
                 rs.getInt("so_bao_danh"),
                 rs.getString("ho_ten"),

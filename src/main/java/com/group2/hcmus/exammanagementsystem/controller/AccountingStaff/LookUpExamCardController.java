@@ -1,7 +1,7 @@
 package com.group2.hcmus.exammanagementsystem.controller.AccountingStaff;
 
-import com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils.ExamCard;
-import com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils.Service;
+import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
+import com.group2.hcmus.exammanagementsystem.BUS.ExamCardBUS;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,28 +26,28 @@ public class LookUpExamCardController implements Initializable{
     private Button clearButton;
 
     @FXML
-    private TableColumn<ExamCard, String> diaChiColumn;
+    private TableColumn<ExamCardDTO, String> diaChiColumn;
 
     @FXML
-    private TableColumn<ExamCard, LocalTime> gioThiColumn;
+    private TableColumn<ExamCardDTO, LocalTime> gioThiColumn;
 
     @FXML
-    private TableColumn<ExamCard, String> hoTenColumn;
+    private TableColumn<ExamCardDTO, String> hoTenColumn;
 
     @FXML
-    private TableColumn<ExamCard, Integer> maPhieuColumn;
+    private TableColumn<ExamCardDTO, Integer> maPhieuColumn;
 
     @FXML
     private Button nextButton;
 
     @FXML
-    private TableColumn<ExamCard, LocalDate> ngaySinhColumn;
+    private TableColumn<ExamCardDTO, LocalDate> ngaySinhColumn;
 
     @FXML
-    private TableColumn<ExamCard, LocalDate> ngayThiColumn;
+    private TableColumn<ExamCardDTO, LocalDate> ngayThiColumn;
 
     @FXML
-    private TableView<ExamCard> resultTable;
+    private TableView<ExamCardDTO> resultTable;
 
     @FXML
     private Button searchButton;
@@ -62,17 +62,17 @@ public class LookUpExamCardController implements Initializable{
     private Button selectButton;
 
     @FXML
-    private TableColumn<ExamCard, Integer> soBaoDanhColumn;
+    private TableColumn<ExamCardDTO, Integer> soBaoDanhColumn;
 
-    private Service examCardService;
-    private ObservableList<ExamCard> examCardList;
-    private ExamCard selectedExamCard;
+    private ExamCardBUS examCardService;
+    private ObservableList<ExamCardDTO> examCardList;
+    private ExamCardDTO selectedExamCard;
 
     /* Initializes the controller class */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize the service
-        examCardService = new Service();
+        examCardService = new ExamCardBUS();
 
         // Initialize the observable list
         examCardList = FXCollections.observableArrayList();
@@ -91,7 +91,7 @@ public class LookUpExamCardController implements Initializable{
         diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaDiemThi"));
 
         // Format date columns
-        ngaySinhColumn.setCellFactory(column -> new TableCell<ExamCard, LocalDate>() {
+        ngaySinhColumn.setCellFactory(column -> new TableCell<ExamCardDTO, LocalDate>() {
             private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             @Override
@@ -105,7 +105,7 @@ public class LookUpExamCardController implements Initializable{
             }
         });
 
-        ngayThiColumn.setCellFactory(column -> new TableCell<ExamCard, LocalDate>() {
+        ngayThiColumn.setCellFactory(column -> new TableCell<ExamCardDTO, LocalDate>() {
             private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             @Override
@@ -120,7 +120,7 @@ public class LookUpExamCardController implements Initializable{
         });
 
         // Format time column
-        gioThiColumn.setCellFactory(column -> new TableCell<ExamCard, LocalTime>() {
+        gioThiColumn.setCellFactory(column -> new TableCell<ExamCardDTO, LocalTime>() {
             private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
             @Override
@@ -160,7 +160,7 @@ public class LookUpExamCardController implements Initializable{
 
     /* Load all exam cards into the table view */
     private void loadAllExamCards() {
-        List<ExamCard> cards = examCardService.getAllExamCards();
+        List<ExamCardDTO> cards = examCardService.getAllExamCards();
         examCardList.clear();
         examCardList.addAll(cards);
     }
@@ -176,7 +176,7 @@ public class LookUpExamCardController implements Initializable{
             return;
         }
 
-        List<ExamCard> searchResult;
+        List<ExamCardDTO> searchResult;
 
         switch (searchType) {
             case "Mã phiếu dự thi":
@@ -267,7 +267,7 @@ public class LookUpExamCardController implements Initializable{
     }
 
     /* Get the selected exam card */
-    public ExamCard getSelectedExamCard() {
+    public ExamCardDTO getSelectedExamCard() {
         return selectedExamCard;
     }
 }

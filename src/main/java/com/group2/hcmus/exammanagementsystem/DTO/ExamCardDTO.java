@@ -1,9 +1,9 @@
-package com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.utils;
+package com.group2.hcmus.exammanagementsystem.DTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ExamCard {
+public class ExamCardDTO {
     private int maPhieuDuThi;
     private int soBaoDanh;
     private String hoTen;
@@ -12,7 +12,7 @@ public class ExamCard {
     private LocalTime gioThi;
     private String diaDiemThi;
 
-    public ExamCard(int maPhieuDuThi, int soBaoDanh, String hoTen, LocalDate ngaySinh,
+    public ExamCardDTO(int maPhieuDuThi, int soBaoDanh, String hoTen, LocalDate ngaySinh,
                     LocalDate ngayThi, LocalTime gioThi, String diaDiemThi) {
         this.maPhieuDuThi = maPhieuDuThi;
         this.soBaoDanh = soBaoDanh;
