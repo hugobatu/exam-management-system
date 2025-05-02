@@ -1,4 +1,4 @@
-package com.group2.hcmus.exammanagementsystem.bus;
+package com.group2.hcmus.exammanagementsystem.BUS;
 
 import com.group2.hcmus.exammanagementsystem.DAO.FreeRegistrationDAO;
 import com.group2.hcmus.exammanagementsystem.DTO.FreeRegistrationDTO;

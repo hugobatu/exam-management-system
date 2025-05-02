@@ -2,8 +2,8 @@ package com.group2.hcmus.exammanagementsystem.controller.Receptionist.FreeRegist
 
 import com.group2.hcmus.exammanagementsystem.DTO.FreeRegistrationDTO;
 import com.group2.hcmus.exammanagementsystem.DTO.ScheduleListDTO;
-import com.group2.hcmus.exammanagementsystem.bus.FreeRegistrationBUS;
-import com.group2.hcmus.exammanagementsystem.bus.ScheduleListBUS;
+import com.group2.hcmus.exammanagementsystem.BUS.FreeRegistrationBUS;
+import com.group2.hcmus.exammanagementsystem.BUS.ScheduleListBUS;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
