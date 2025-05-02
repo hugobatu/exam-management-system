@@ -1,10 +1,26 @@
 package com.group2.hcmus.exammanagementsystem.controller.AccountingStaff;
 
+import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
+import com.group2.hcmus.exammanagementsystem.DTO.ExtensionTicketDTO;
+import com.group2.hcmus.exammanagementsystem.BUS.ExtensionTicketBUS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class ExtensionTicketController {
+public class ExtensionTicketController implements Initializable {
     @FXML
     private Button backButton;
 
@@ -13,12 +29,6 @@ public class ExtensionTicketController {
 
     @FXML
     private Button cancelButton;
-
-    @FXML
-    private CheckBox daKiemTraCheckBox;
-
-    @FXML
-    private TextField filePathTextField;
 
     @FXML
     private TextArea ghiChuTextArea;
@@ -30,10 +40,10 @@ public class ExtensionTicketController {
     private TextField lichThiTextField;
 
     @FXML
-    private ComboBox<?> loaiGiaHanComboBox;
+    private ComboBox<String> loaiGiaHanComboBox;
 
     @FXML
-    private ComboBox<?> lyDoGiaHanComboBox;
+    private ComboBox<String> lyDoGiaHanComboBox;
 
     @FXML
     private TextField maPhieuTextField;
@@ -59,23 +69,212 @@ public class ExtensionTicketController {
     @FXML
     private Label soLanGiaHanLabel;
 
-    @FXML
-    void handleBack(ActionEvent event) {
+    private ExamCardDTO examCard;
+    private ExtensionTicketBUS extensionService;
+    private File selectedFile;
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Initialize the extension service
+        extensionService = new ExtensionTicketBUS();
+
+        // Set default values
+        ngayGiaHanPicker.setValue(LocalDate.now());
+
+        // Initialize combo boxes with data
+        initializeComboBoxes();
+
+        // Set up change listeners for combo boxes
+        setupComboBoxListeners();
+    }
+
+    private void initializeComboBoxes() {
+        // Add extension types
+        loaiGiaHanComboBox.getItems().addAll(
+                "Trường hợp thông thường",
+                "Trường hợp đặc biệt"
+        );
+
+        // Add extension reasons
+        lyDoGiaHanComboBox.getItems().addAll(
+                "Bệnh tật",
+                "Tai nạn",
+                "Tang sự",
+                "Công vụ",
+                "Lý do khác"
+        );
+    }
+
+    private void setupComboBoxListeners() {
+        // Calculate fee when extension type or reason changes
+        loaiGiaHanComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            calculateFee();
+        });
+
+        lyDoGiaHanComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            calculateFee();
+        });
+    }
+
+    private void calculateFee() {
+        String extensionType = loaiGiaHanComboBox.getValue();
+        String reason = lyDoGiaHanComboBox.getValue();
+
+        if (extensionType != null && reason != null) {
+            // Use the service to calculate the fee
+            double fee = extensionService.calculateExtensionFee(extensionType, reason);
+
+            // Format the fee and update the text field
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            phiGiaHanTextField.setText(formatter.format(fee) + " VND");
+        }
+    }
+
+    public void setExamCard(ExamCardDTO examCard) {
+        this.examCard = examCard;
+
+        // Populate fields with exam card data
+        maPhieuTextField.setText(String.valueOf(examCard.getMaPhieuDuThi()));
+        soBaoDanhTextField.setText(String.valueOf(examCard.getSoBaoDanh()));
+        hoTenTextField.setText(examCard.getHoTen());
+        ngaySinhTextField.setText(examCard.getNgaySinh().format(dateFormatter));
+
+        // Set exam schedule info
+        lichThiTextField.setText(examCard.getNgayThi().format(dateFormatter));
+        ngayGioThiTextField.setText(examCard.getGioThi().format(timeFormatter)
+        );
+
+        // Get number of previous extensions
+        int extensions = extensionService.getExtensionCount(examCard.getMaPhieuDuThi());
+        soLanGiaHanLabel.setText(String.valueOf(extensions));
+
+        // Disable next button if already has 2 extensions
+        if (extensions >= 2) {
+            nextButton.setDisable(true);
+            showAlert(Alert.AlertType.WARNING, "Thông báo",
+                    "Phiếu dự thi này đã sử dụng tối đa số lần gia hạn (2 lần).");
+        }
     }
 
     @FXML
-    void handleBrowse(ActionEvent event) {
+    void handleBack(ActionEvent event) {
+        try {
+            // Load the LookUpExamCardController
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/LookUpExamCard.fxml"));
+            Parent root = loader.load();
 
+            // Set the scene
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Tra cứu phiếu dự thi");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể quay lại màn hình tra cứu: " + e.getMessage());
+        }
     }
 
     @FXML
     void handleCancel(ActionEvent event) {
+        // Ask for confirmation before canceling
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Xác nhận");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Bạn có chắc muốn hủy đăng ký gia hạn không?");
 
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Close the window
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML
     void handleNext(ActionEvent event) {
+        // Validate required fields
+        if (!validateFields()) {
+            return;
+        }
 
+        // Create extension ticket
+        ExtensionTicketDTO ticket = new ExtensionTicketDTO();
+        ticket.setMaPhieuDuThi(examCard.getMaPhieuDuThi());
+        ticket.setNgayGiaHan(ngayGiaHanPicker.getValue());
+        ticket.setLoaiGiaHan(loaiGiaHanComboBox.getValue());
+        ticket.setLyDoGiaHan(lyDoGiaHanComboBox.getValue());
+        ticket.setGhiChu(ghiChuTextArea.getText());
+
+        // Parse fee (remove formatting)
+        String feeText = phiGiaHanTextField.getText().replaceAll("[^\\d]", "");
+        ticket.setPhiGiaHan(Double.parseDouble(feeText));
+
+        // Save the extension ticket
+        boolean success = extensionService.saveExtensionTicket(ticket);
+
+        if (success) {
+            // Show success message
+            showAlert(Alert.AlertType.INFORMATION, "Thành công",
+                    "Đã lưu thông tin gia hạn. Bạn có thể tiếp tục để chọn lịch thi mới.");
+
+            // Load the next screen to select new exam schedule
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/NewExamSchedule.fxml"));
+                Parent root = loader.load();
+
+                // Pass necessary data to the next controller
+                NewExamScheduleController controller = loader.getController();
+                controller.setExamCard(examCard);
+                controller.setExtensionTicket(ticket);
+
+                // Set the scene
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) nextButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.setTitle("Chọn lịch thi mới");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể mở màn hình chọn lịch thi: " + e.getMessage());
+            }
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể lưu thông tin gia hạn. Vui lòng thử lại.");
+        }
+    }
+
+    private boolean validateFields() {
+        StringBuilder errorMessage = new StringBuilder();
+
+        if (loaiGiaHanComboBox.getValue() == null) {
+            errorMessage.append("- Vui lòng chọn loại gia hạn\n");
+        }
+
+        if (lyDoGiaHanComboBox.getValue() == null) {
+            errorMessage.append("- Vui lòng chọn lý do gia hạn\n");
+        }
+
+        if (ngayGiaHanPicker.getValue() == null) {
+            errorMessage.append("- Vui lòng chọn ngày gia hạn\n");
+        } else if (ngayGiaHanPicker.getValue().isBefore(LocalDate.now())) {
+            errorMessage.append("- Ngày gia hạn không thể là ngày trong quá khứ\n");
+        }
+
+        if (errorMessage.length() > 0) {
+            showAlert(Alert.AlertType.WARNING, "Thông tin không hợp lệ", errorMessage.toString());
+            return false;
+        }
+
+        return true;
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -9,150 +9,109 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.controller.ExaminationStaff.LookUpController">
-    <left>
-        <VBox prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #66a6ff;" BorderPane.alignment="CENTER">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" style="-fx-padding: 10;">
-                    <children>
-                        <AnchorPane prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #FFFFFF;">
-                            <HBox.margin>
-                                <Insets right="10.0" />
-                            </HBox.margin>
-                        </AnchorPane>
-                        <Label text="Kế toán" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <Button id="btn_PhieuDangKy" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Phiếu đăng ký" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <Button id="btn_ThanhToan" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Thanh toán" textFill="#66a6ff">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
-                <Button id="btn_HoaDon" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Hóa đơn" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <Button id="btn_TaoPhieuDuThi" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Tạo phiếu dự thi" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <Button id="btn_GiaHan" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Gia hạn" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <Button id="btn_CaiDat" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20;" text="Cài đặt" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-            </children>
-        </VBox>
-    </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.PaymentController">
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="700.0" prefWidth="661.0" style="-fx-background-color: #f5f5f5;" BorderPane.alignment="CENTER">
             <children>
-                <Label style="-fx-padding: 20 0 0 20;" text="Thanh toán">
+                <Label style="-fx-padding: 20 0 0 20;" text="Thanh toán phiếu đăng ký">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <AnchorPane prefHeight="586.0" prefWidth="660.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                <AnchorPane prefHeight="610.0" prefWidth="677.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                     <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                     </VBox.margin>
                     <children>
-                        <Label id="lbl_PhieuDangKy" layoutX="20.0" layoutY="14.0" text="Hóa đơn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
+                        <Label fx:id="lbl_PhieuDangKy" layoutX="20.0" layoutY="14.0" text="Hóa đơn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
-                        <Label id="lbl_MaPhieuDangKy" layoutX="20.0" layoutY="51.0" text="Mã phiếu đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="51.0">
+                        <Label fx:id="lbl_MaPhieuDangKy" layoutX="20.0" layoutY="51.0" text="Mã phiếu đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="51.0">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <TextField id="txt_MaChungChi" layoutX="20.0" layoutY="76.0" prefHeight="40.0" prefWidth="630.0" promptText="Nhập mã phiếu đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="76.0" />
-                        <Label id="lbl_MaKhachHang" layoutX="20.0" layoutY="126.0" text="Mã khách hàng" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="126.0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField id="txt_MaKhachHang" layoutX="20.0" layoutY="151.0" prefHeight="40.0" prefWidth="630.0" promptText="Nhập mã khách hàng" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="151.0" />
-                        <Label id="lbl_NgayDangKy" layoutX="20.0" layoutY="201.0" text="Ngày đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="201.0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                  <DatePicker id="dp_NgayDangKy" layoutX="18.0" layoutY="229.0" prefHeight="38.0" prefWidth="289.0" promptText="Nhập ngày đăng ký" />
-                  <Label id="lbl_LoaiKhachHang" layoutX="360.0" layoutY="201.0" text="Loại khách hàng">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox id="cbb_LoaiKhachHang" layoutX="360.0" layoutY="229.0" prefHeight="38.0" prefWidth="278.0" />
-                        <Label id="lbl_TrangThaiThanhToan" layoutX="20.0" layoutY="276.0" text="Trạng thái thanh toán" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="276.0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                  <CheckBox id="chk_DaThanhToan" layoutX="21.0" layoutY="296.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" text="Đã thanh toán" />
-                  <CheckBox id="chk_ChuaThanhToan" layoutX="191.0" layoutY="296.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" text="Chưa thanh toán" />
-                        <Label id="lbl_GiamGia" layoutX="21.0" layoutY="344.0" text="Giảm giá" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="344.0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                  <TextField id="txt_GiamGia" layoutX="21.0" layoutY="370.0" prefHeight="40.0" prefWidth="286.0" promptText="Giảm giá đối với khách hàng đơn vị" />
-                        <Label id="lbl_ThanhTien" layoutX="360.0" layoutY="344.0" text="Thành tiền" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="344.0">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField id="txt_ThanhTien" layoutX="360.8" layoutY="370.0" prefHeight="40.0" prefWidth="289.0" promptText="Tổng tiền cần thanh toán" AnchorPane.leftAnchor="361.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="370.0" />
-                  <Label id="lbl_NgayThanhToan" layoutX="23.0" layoutY="422.0" text="Ngày thanh toán">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <DatePicker id="dp_NgayThanhToan" layoutX="21.0" layoutY="450.0" prefHeight="38.0" prefWidth="289.0" promptText="Nhập ngày thanh toán" />
-                  <Label id="lbl_HinhThucThanhToan" layoutX="361.0" layoutY="422.0" text="Hình thức thanh toán">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                        <Label id="lbl_GhiChu" layoutX="20.0" layoutY="497.0" text="Ghi chú">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField id="txt_GhiChu" layoutX="21.0" layoutY="517.0" prefHeight="40.0" prefWidth="616.0" promptText="Nhập ghi chú" />
-                        <Button id="btn_LapHoaDon" layoutX="176.0" layoutY="574.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Lập hóa đơn" textFill="WHITE">
+                        <Button fx:id="btn_TimKiem" layoutX="534.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Tìm kiếm" textFill="WHITE">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Button>
-                  <Button id="btn_XacNhan" layoutX="360.0" layoutY="574.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Xác nhận thanh toán" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <ComboBox id="cbb_HinhThucThanhToan" layoutX="360.0" layoutY="450.0" prefHeight="38.0" prefWidth="274.0" />
+                        <TextField fx:id="txt_MaPhieuDangKy" layoutX="20.0" layoutY="76.0" prefHeight="40.0" prefWidth="498.0" promptText="Nhập mã phiếu đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="76.0" />
+                        <Label fx:id="lbl_MaKhachHang" layoutX="20.0" layoutY="126.0" text="Mã khách hàng" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="126.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_MaKhachHang" layoutX="20.0" layoutY="151.0" prefHeight="40.0" prefWidth="614.0" promptText="Nhập mã khách hàng" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="151.0" />
+                        <Label fx:id="lbl_NgayDangKy" layoutX="20.0" layoutY="201.0" text="Ngày đăng ký" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="201.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="dp_NgayDangKy" layoutX="18.0" layoutY="229.0" prefHeight="38.0" prefWidth="289.0" promptText="Nhập ngày đăng ký" />
+                        <Label fx:id="lbl_LoaiKhachHang" layoutX="360.0" layoutY="201.0" text="Loại khách hàng">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbb_LoaiKhachHang" layoutX="360.0" layoutY="229.0" prefHeight="38.0" prefWidth="278.0" />
+                        <Label fx:id="lbl_TrangThaiThanhToan" layoutX="20.0" layoutY="276.0" text="Trạng thái thanh toán" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="276.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="chk_DaThanhToan" layoutX="21.0" layoutY="296.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" text="Đã thanh toán" />
+                        <CheckBox fx:id="chk_ChuaThanhToan" layoutX="191.0" layoutY="296.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" text="Chưa thanh toán" />
+                        <Label fx:id="lbl_GiamGia" layoutX="21.0" layoutY="344.0" text="Giảm giá" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="344.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_GiamGia" layoutX="21.0" layoutY="370.0" prefHeight="40.0" prefWidth="286.0" promptText="Giảm giá đối với khách hàng đơn vị" />
+                        <Label fx:id="lbl_ThanhTien" layoutX="360.0" layoutY="344.0" text="Thành tiền" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="344.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_ThanhTien" layoutX="360.8" layoutY="370.0" prefHeight="40.0" prefWidth="269.0" promptText="Tổng tiền cần thanh toán" AnchorPane.leftAnchor="361.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="370.0" />
+                        <Label fx:id="lbl_NgayThanhToan" layoutX="23.0" layoutY="422.0" text="Ngày thanh toán">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="dp_NgayThanhToan" layoutX="21.0" layoutY="450.0" prefHeight="38.0" prefWidth="289.0" promptText="Nhập ngày thanh toán" />
+                        <Label fx:id="lbl_HinhThucThanhToan" layoutX="361.0" layoutY="422.0" text="Hình thức thanh toán">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lbl_NhanVienLap" layoutX="20.0" layoutY="497.0" text="Nhân viên lập">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_NhanVienLap" layoutX="21.0" layoutY="517.0" prefHeight="40.0" prefWidth="617.0" promptText="Nhập mã nhân viên lập hóa đơn" />
+                        <Button fx:id="btn_LapHoaDon" layoutX="127.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Lập hóa đơn" textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btn_XacNhan" layoutX="263.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Xác nhận thanh toán" textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                        <ComboBox fx:id="cbb_HinhThucThanhToan" layoutX="360.0" layoutY="450.0" prefHeight="38.0" prefWidth="274.0" />
+                        <Button fx:id="btn_Reset" layoutX="461.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Reset " textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </AnchorPane>
             </children>

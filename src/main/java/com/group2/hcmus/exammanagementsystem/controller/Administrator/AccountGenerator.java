@@ -42,8 +42,11 @@ public class AccountGenerator {
     public static void main(String[] args) {
         String username = "a";
         String password = "a";
-        String role = "NVTN";
-
+        String role = "Admin";
+        String username_e = "e";
+        String password_e = "e";
+        String role_e = "Exam";
         AccountGenerator.createAccountWithRole(username, password, role);
+        AccountGenerator.createAccountWithRole(username_e, password_e, role_e);
     }
 }
