@@ -32,4 +32,13 @@ module com.group2.hcmus.exammanagementsystem {
     exports com.group2.hcmus.exammanagementsystem.DTO;
     opens com.group2.hcmus.exammanagementsystem.DTO to javafx.fxml;
 
+    exports com.group2.hcmus.exammanagementsystem.controller.Administrator;
+    opens com.group2.hcmus.exammanagementsystem.controller.Administrator to javafx.fxml;
+
+    exports com.group2.hcmus.exammanagementsystem.controller.ExaminationStaff;
+    opens  com.group2.hcmus.exammanagementsystem.controller.ExaminationStaff to javafx.fxml;
+
+    
+
+
 }

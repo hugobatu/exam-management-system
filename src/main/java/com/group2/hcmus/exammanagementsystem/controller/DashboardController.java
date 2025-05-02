@@ -60,7 +60,7 @@ public class DashboardController {
             case "Inputting":
                 sidebarButtons.add(createButton("Nhập kết quả", "#NhapKetQua"));
                 break;
-            case "Examination":
+            case "Exam":
                 sidebarButtons.add(createButton("Tra cứu bảng tính", "#LookUpSpreadsheet"));
                 sidebarButtons.add(createButton("Nhập liệu bảng tính", "#InputSpreadsheet"));
                 break;
@@ -141,6 +141,12 @@ public class DashboardController {
                 break;
             case "#Certificate":
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/CertificateManagement.fxml")));
+                break;
+            case "#LookUpSpreadsheet":
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/ExaminationStaff/LookUpSpreadsheet.fxml")));
+                break;
+            case "#InputSpreadsheet":   
+                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/ExaminationStaff/InputSpreadsheet.fxml")));
                 break;
             default:
                 break;
