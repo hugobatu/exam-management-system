@@ -1,4 +1,4 @@
-package com.group2.hcmus.exammanagementsystem.controller.AccountingStaff;
+package com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtension;
 
 import com.group2.hcmus.exammanagementsystem.BUS.NewExamScheduleBUS;
 import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;

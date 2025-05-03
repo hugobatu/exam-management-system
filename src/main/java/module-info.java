@@ -38,8 +38,8 @@ module com.group2.hcmus.exammanagementsystem {
 
     exports com.group2.hcmus.exammanagementsystem.controller.ExaminationStaff;
     opens  com.group2.hcmus.exammanagementsystem.controller.ExaminationStaff to javafx.fxml;
-
-    
+    exports com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtension;
+    opens com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtension to javafx.fxml;
 
 
 }

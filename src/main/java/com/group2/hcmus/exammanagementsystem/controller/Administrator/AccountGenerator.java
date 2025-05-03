@@ -46,7 +46,7 @@ public class AccountGenerator {
 
         String username_b = "b";
         String password_b = "b";
-        String role_b = "Accounting";
+        String role_b = "NVTN";
 
         String username_e = "e";
         String password_e = "e";
