@@ -1,132 +1,61 @@
 package com.group2.hcmus.exammanagementsystem.BUS;
 
+import com.group2.hcmus.exammanagementsystem.DAO.ExamCardDAO;
 import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
-import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExamCardBUS {
-    // Search exam cards by ID
+    private final ExamCardDAO examCardDAO;
+
+    public ExamCardBUS() {
+        this.examCardDAO = new ExamCardDAO();
+    }
+
+    // Search exam cards by ID with business validation
     public List<ExamCardDTO> searchByExamCardId(int maPhieuDuThi) {
-        List<ExamCardDTO> result = new ArrayList<>();
-        String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
-                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
-            JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
-            JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
-            WHERE pdt.ma_phieu_du_thi = ?
-        """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, maPhieuDuThi);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    result.add(createExamCardFromResultSet(rs));
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error searching exam cards by ID: " + e.getMessage());
+        if (maPhieuDuThi <= 0) {
+            throw new IllegalArgumentException("Mã phiếu dự thi không hợp lệ");
         }
-
-        return result;
+        return examCardDAO.searchByExamCardId(maPhieuDuThi);
     }
 
-    // Search exam cards by exam registration number
+    // Search exam cards by registration number with business validation
     public List<ExamCardDTO> searchByRegistrationNumber(int soBaoDanh) {
-        List<ExamCardDTO> result = new ArrayList<>();
-        String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
-                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
-            JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
-            JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
-            WHERE pdt.so_bao_danh = ?
-        """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, soBaoDanh);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    result.add(createExamCardFromResultSet(rs));
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error searching exam cards by registration number: " + e.getMessage());
+        if (soBaoDanh <= 0) {
+            throw new IllegalArgumentException("Số báo danh không hợp lệ");
         }
-
-        return result;
+        return examCardDAO.searchByRegistrationNumber(soBaoDanh);
     }
 
-    // Search exam cards by candidate name
+    // Search exam cards by candidate name with business validation
     public List<ExamCardDTO> searchByName(String name) {
-        List<ExamCardDTO> result = new ArrayList<>();
-        String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
-                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
-            JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
-            JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
-            WHERE ts.ho_ten ILIKE ?
-        """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, "%" + name + "%");
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    result.add(createExamCardFromResultSet(rs));
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error searching exam cards by name: " + e.getMessage());
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tên thí sinh không được để trống");
         }
-
-        return result;
+        return examCardDAO.searchByName(name);
     }
 
     // Get all exam cards
     public List<ExamCardDTO> getAllExamCards() {
-        List<ExamCardDTO> result = new ArrayList<>();
-        String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
-                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
-            JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
-            JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
-        """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                result.add(createExamCardFromResultSet(rs));
-            }
-        } catch (SQLException e) {
-            System.err.println("Error getting all exam cards: " + e.getMessage());
-        }
-
-        return result;
+        return examCardDAO.getAllExamCards();
     }
 
-    // Helper method to create ExamCard from ResultSet
-    private ExamCardDTO createExamCardFromResultSet(ResultSet rs) throws SQLException {
-        return new ExamCardDTO(
-                rs.getInt("ma_phieu_du_thi"),
-                rs.getInt("so_bao_danh"),
-                rs.getString("ho_ten"),
-                rs.getDate("ngay_sinh").toLocalDate(),
-                rs.getDate("ngay_thi").toLocalDate(),
-                rs.getTime("gio_thi").toLocalTime(),
-                rs.getString("dia_diem_thi")
-        );
+    // Additional business logic methods can be added here
+    // For example, validating if a candidate is eligible for an exam,
+    // checking if the exam card has expired, etc.
+
+    /**
+     * Check if an exam card is valid for today's date
+     * This is an example of business logic that would go in the BUS layer
+     */
+    public boolean isExamCardValid(ExamCardDTO examCard) {
+        if (examCard == null) {
+            return false;
+        }
+
+        // Example logic: Check if exam date is in the future
+        java.time.LocalDate today = java.time.LocalDate.now();
+        return !examCard.getNgayThi().isBefore(today);
     }
 }

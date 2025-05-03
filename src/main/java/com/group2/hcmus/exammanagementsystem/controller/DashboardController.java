@@ -51,11 +51,11 @@ public class DashboardController {
                 sidebarButtons.add(createButton("Đăng ký tự do", "#FreeRegistration"));
                 sidebarButtons.add(createButton("Đăng ký đon vị", "#ThanhToan"));
                 sidebarButtons.add(createButton("Lịch thi", "#ThanhToan"));
-//                sidebarButtons.add(createButton("Thanh toán", "#ThanhToan"));
 
+                sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
                 break;
             case "Accounting":
-                sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
+                //sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
                 break;
             case "Inputting":
                 sidebarButtons.add(createButton("Nhập kết quả", "#NhapKetQua"));
