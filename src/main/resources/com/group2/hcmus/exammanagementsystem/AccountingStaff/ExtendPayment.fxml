@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.controller.AccountingStaff.ExtendPaymentController">
+    <center>
+        <VBox prefHeight="690.0" prefWidth="700.0" style="-fx-background-color: #f5f5f5;" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="lbl_ThanhToanGiaHan" style="-fx-padding: 20 0 0 20;" text="Thanh toán gia hạn">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <AnchorPane prefHeight="690.0" prefWidth="700.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                    </VBox.margin>
+                    <children>
+                        <Label fx:id="lbl_PhieuDuThi" layoutX="18.0" layoutY="14.0" text="Phiếu dự thi" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="14.0">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lbl_MaPhieuDuThi" layoutX="14.0" layoutY="50.0" text="Mã phiếu dự thi" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_MaPhieuDuThi" layoutX="16.0" layoutY="76.0" prefHeight="40.0" prefWidth="168.0" promptText="Nhập mã phiếu dự thi" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="476.0" AnchorPane.topAnchor="76.0" />
+                        <Label fx:id="lbl_MaKhachHang" layoutX="362.0" layoutY="128.0" text="Mã khách hàng" AnchorPane.leftAnchor="362.0" AnchorPane.topAnchor="128.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txt_MaKhachHang" layoutX="362.0" layoutY="153.0" prefHeight="40.0" prefWidth="272.0" promptText="Mã khách hàng" AnchorPane.leftAnchor="362.0" AnchorPane.rightAnchor="26.799999999999955" AnchorPane.topAnchor="153.0" />
+                  <Label fx:id="lbl_NgayPhatHanh" layoutX="14.0" layoutY="202.0" text="Ngày phát hành">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="txt_NgayPhatHanh" layoutX="12.0" layoutY="230.0" prefHeight="38.0" prefWidth="289.0" promptText="Nhập ngày phát hành phiếu" />
+                        <Label fx:id="lbl_NgayDangKy" layoutX="364.0" layoutY="202.0" text="Ngày đăng ký mới" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="202.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                  <Button fx:id="btn_XacNhanThanhToan" layoutX="184.0" layoutY="533.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Xác nhận thanh toán" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <DatePicker fx:id="dp_NgayDangKy" layoutX="361.0" layoutY="227.0" prefHeight="40.0" prefWidth="272.0" promptText="Nhập ngày đăng ký" />
+                  <Label fx:id="lbl_SoBaoDanh" layoutX="14.0" layoutY="128.0" text="Số báo danh">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_SoBaoDanh" layoutX="14.0" layoutY="153.0" prefHeight="40.0" prefWidth="271.0" promptText="Số bào danh" />
+                  <Button layoutX="204.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Tìm kiếm" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lbl_MaPhieuDangKy" layoutX="362.0" layoutY="50.0" text="Mã phiếu đăng ký">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_MaPhieuDangKy" layoutX="364.0" layoutY="76.0" prefHeight="40.0" prefWidth="266.0" promptText="Mã phiếu đăng ký" />
+                  <Button fx:id="btn_Huy" layoutX="399.0" layoutY="533.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="59.0" style="-fx-background-color: #66a6ff; -fx-background-radius: 5;" text="Hủy" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lbl_SoLanGiaHan" layoutX="11.0" layoutY="286.0" text="Số lần gia hạn">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_SoLanGiaHan" layoutX="12.0" layoutY="313.0" prefHeight="40.0" prefWidth="289.0" promptText="Số lần gia hạn" />
+                  <Label fx:id="lbl_PhiGiaHan" layoutX="360.0" layoutY="286.0" text="Phí gia hạn">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_PhiGiaHan" layoutX="361.0" layoutY="312.0" prefHeight="40.0" prefWidth="274.0" promptText="Phí gia hạn" />
+                  <ComboBox fx:id="cbb_PhuongThucThanhToan" layoutX="13.0" layoutY="477.0" prefHeight="42.0" prefWidth="288.0" />
+                  <Label fx:id="lbl_PhuongThucThanhToan" layoutX="12.0" layoutY="446.0" text="Phương thức thanh toán">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_LyDoGiaHan" layoutX="11.0" layoutY="370.0" text="Lý do gia hạn">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_LyDoGiaHan" layoutX="12.0" layoutY="397.0" prefHeight="40.0" prefWidth="289.0" promptText="Lý do gia hạn" />
+                  <Label fx:id="lbl_TrangThaiGiaHan" layoutX="360.0" layoutY="370.0" text="Trạng thái gia hạn">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_TrangThaiGiaHan" layoutX="361.0" layoutY="396.0" prefHeight="40.0" prefWidth="274.0" promptText="Trạng thái gia hạn" />
+                  <Label fx:id="lbl_GhiChu" layoutX="362.0" layoutY="446.0" text="Ghi chú">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_GhiChu" layoutX="361.0" layoutY="473.0" prefHeight="40.0" prefWidth="275.0" promptText="Nhập ghi chú" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
