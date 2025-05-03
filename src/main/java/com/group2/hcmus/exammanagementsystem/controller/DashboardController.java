@@ -1,5 +1,6 @@
 package com.group2.hcmus.exammanagementsystem.controller;
 
+import com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtension.LookUpExamCardController;
 import com.group2.hcmus.exammanagementsystem.controller.Receptionist.FreeRegistration.Step1Controller;
 import com.group2.hcmus.exammanagementsystem.utils.SupportingUtilities;
 import com.jfoenix.controls.JFXButton;
@@ -47,18 +48,14 @@ public class DashboardController {
         sidebarButtons.clear();
 
         switch (role) {
-            case "NVTN":
+            case "Reception":
                 sidebarButtons.add(createButton("Đăng ký tự do", "#FreeRegistration"));
-                sidebarButtons.add(createButton("Đăng ký đon vị", "#ThanhToan"));
+                sidebarButtons.add(createButton("Đăng ký đơn vị", "#ThanhToan"));
                 sidebarButtons.add(createButton("Lịch thi", "#ThanhToan"));
-
                 sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
                 break;
             case "Accounting":
                 //sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
-                break;
-            case "Inputting":
-                sidebarButtons.add(createButton("Nhập kết quả", "#NhapKetQua"));
                 break;
             case "Exam":
                 sidebarButtons.add(createButton("Tra cứu bảng tính", "#LookUpSpreadsheet"));
@@ -122,10 +119,12 @@ public class DashboardController {
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Receptionist/FreeRegistration/Step2.fxml")));
                 break;
             case "#LapPhieuGiaHan":
-                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/LookUpExamCard.fxml")));
-                break;
-            case "#NhapKetQua":
-                content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/hcmus/exammanagement/CapChungChi/nhap-ket-qua.fxml")));
+                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/LookUpExamCard.fxml"));
+                Parent s1 = loader1.load();
+                LookUpExamCardController controller1 = loader1.getController();
+                controller1.setMainContainer(mainInfoContainer);
+                mainInfoContainer.getChildren().setAll(s1);
+
                 break;
             case "#Staff":
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Administrator/StaffManagement.fxml")));

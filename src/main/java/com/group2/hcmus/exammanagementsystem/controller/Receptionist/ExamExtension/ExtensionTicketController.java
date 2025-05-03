@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
@@ -74,6 +75,12 @@ public class ExtensionTicketController implements Initializable {
     private File selectedFile;
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+    // method for loading into new stack pane
+    private StackPane mainContainer; // This will hold step1, step2, step3...
+    public void setMainContainer(StackPane mainContainer) {
+        this.mainContainer = mainContainer;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -152,21 +159,22 @@ public class ExtensionTicketController implements Initializable {
     @FXML
     void handleBack(ActionEvent event) {
         try {
-            // Load the LookUpExamCardController
+            // Load LookUpExamCard.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/LookUpExamCard.fxml"));
             Parent root = loader.load();
 
-            // Set the scene
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Tra cứu phiếu dự thi");
-            stage.show();
+            // Get controller and set mainContainer back if needed
+            LookUpExamCardController controller = loader.getController();
+            controller.setMainContainer(mainContainer);
+
+            // Switch screen
+            mainContainer.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể quay lại màn hình tra cứu: " + e.getMessage());
         }
     }
+
 
     @FXML
     void handleCancel(ActionEvent event) {
@@ -191,7 +199,7 @@ public class ExtensionTicketController implements Initializable {
             return;
         }
 
-        // Create extension ticket
+        // Create extension ticket DTO
         ExtensionTicketDTO ticket = new ExtensionTicketDTO();
         ticket.setMaPhieuDuThi(examCard.getMaPhieuDuThi());
         ticket.setNgayGiaHan(ngayGiaHanPicker.getValue());
@@ -207,26 +215,22 @@ public class ExtensionTicketController implements Initializable {
         boolean success = extensionService.saveExtensionTicket(ticket);
 
         if (success) {
-            // Show success message
             showAlert(Alert.AlertType.INFORMATION, "Thành công",
                     "Đã lưu thông tin gia hạn. Bạn có thể tiếp tục để chọn lịch thi mới.");
 
-            // Load the next screen to select new exam schedule
+            // Load next screen using mainContainer (StackPane)
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/NewExamSchedule.fxml"));
                 Parent root = loader.load();
 
-                // Pass necessary data to the next controller
-                NewExamScheduleController controller = loader.getController();
-                controller.setExamCard(examCard);
-                controller.setExtensionTicket(ticket);
+                // Get controller and pass data
+                NewExamScheduleController step3 = loader.getController();
+                step3.setMainContainer(mainContainer);
+                step3.setExamCard(examCard);
+                step3.setExtensionTicket(ticket);
 
-                // Set the scene
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) nextButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Chọn lịch thi mới");
-                stage.show();
+                // Replace current content
+                mainContainer.getChildren().setAll(root);
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể mở màn hình chọn lịch thi: " + e.getMessage());
@@ -235,6 +239,7 @@ public class ExtensionTicketController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể lưu thông tin gia hạn. Vui lòng thử lại.");
         }
     }
+
 
     private boolean validateFields() {
         StringBuilder errorMessage = new StringBuilder();

@@ -75,9 +75,13 @@ public class LoginController {
                     if (rsRole.next()) {
                         this.role = rsRole.getString("account_type");
                         this.username = username;
-
-                        sp.showAlert("Logged in as: " + this.username + " with role: " + this.role);
-                        sp.loadScene("/com/group2/hcmus/exammanagementsystem/Dashboard.fxml", "Application", btnLogin);
+                        if (!role.equals("Accounting") && !role.equals("Admin") && !role.equals("Exam") && !role.equals("Reception")) {
+                            sp.showAlert("Invalid role!");
+                        }
+                        else {
+                            sp.showAlert("Logged in as: " + this.username + " with role: " + this.role);
+                            sp.loadScene("/com/group2/hcmus/exammanagementsystem/Dashboard.fxml", "Application", btnLogin);
+                        }
                     } else {
                         sp.showAlert("Role not found.");
                     }

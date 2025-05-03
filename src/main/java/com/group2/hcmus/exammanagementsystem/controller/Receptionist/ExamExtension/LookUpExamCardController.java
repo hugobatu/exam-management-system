@@ -2,6 +2,7 @@ package com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtens
 
 import com.group2.hcmus.exammanagementsystem.DTO.ExamCardDTO;
 import com.group2.hcmus.exammanagementsystem.BUS.ExamCardBUS;
+import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -71,6 +73,13 @@ public class LookUpExamCardController implements Initializable{
     private ExamCardBUS examCardService;
     private ObservableList<ExamCardDTO> examCardList;
     private ExamCardDTO selectedExamCard;
+
+
+    // method for loading into new stack pane
+    private StackPane mainContainer; // This will hold step1, step2, step3...
+    public void setMainContainer(StackPane mainContainer) {
+        this.mainContainer = mainContainer;
+    }
 
     /* Initializes the controller class */
     @Override
@@ -253,14 +262,11 @@ public class LookUpExamCardController implements Initializable{
             Parent root = loader.load();
 
             // Pass the selected exam card to the ExtensionTicketController
-            ExtensionTicketController controller = loader.getController();
-            controller.setExamCard(selectedExamCard);
+            ExtensionTicketController step2 = loader.getController();
+            step2.setMainContainer(mainContainer);
+            step2.setExamCard(selectedExamCard);
 
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Gia hạn phiếu dự thi");
-            stage.show();
+            mainContainer.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể mở màn hình gia hạn phiếu dự thi: " + e.getMessage());

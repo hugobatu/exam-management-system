@@ -1,6 +1,8 @@
 package com.group2.hcmus.exammanagementsystem.DAO;
 
 import com.group2.hcmus.exammanagementsystem.DTO.ExtensionTicketDTO;
+import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
+
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -10,8 +12,7 @@ public class ExtensionTicketDAO {
     public ExtensionTicketDAO() {
         try {
             // Replace with your actual connection initialization
-            this.connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/exam_management_system", "postgres", "ilovemyfam1");
+            this.connection = DatabaseConnection.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -58,6 +59,12 @@ public class NewExamScheduleController implements Initializable {
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+    // method for loading into new stack pane
+    private StackPane mainContainer; // This will hold step1, step2, step3...
+    public void setMainContainer(StackPane mainContainer) {
+        this.mainContainer = mainContainer;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -135,15 +142,14 @@ public class NewExamScheduleController implements Initializable {
 
             ExtensionTicketController controller = loader.getController();
             controller.setExamCard(examCard);
+            controller.setMainContainer(mainContainer);  // Đảm bảo giữ lại container
 
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Gia hạn phiếu dự thi");
-            stage.show();
+            mainContainer.getChildren().setAll(root);  // Quay lại bằng StackPane
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể quay lại: " + e.getMessage());
         }
     }
+
 
     @FXML
     private void handleNext(ActionEvent event) {
@@ -157,7 +163,6 @@ public class NewExamScheduleController implements Initializable {
 
         if (success) {
             showAlert(Alert.AlertType.INFORMATION, "Thành công", "Phiếu dự thi đã được cập nhật.");
-            ((Stage) nextButton.getScene().getWindow()).close();
         } else {
             showAlert(Alert.AlertType.ERROR, "Thất bại", "Cập nhật thất bại. Vui lòng thử lại.");
         }
