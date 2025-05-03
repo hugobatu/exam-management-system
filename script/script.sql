@@ -161,9 +161,11 @@ create table GiaHan (
 	ma_gia_han serial,
 	ma_phieu_du_thi int,
 	ngay_gia_han date,
+	loai_gia_han varchar(50),
 	li_do_gia_han varchar(50),
 	trang_thai_gia_han varchar(50) check (trang_thai_gia_han in ('Chấp nhận', 'Từ chối')),
 	phi_gia_han decimal(12, 3),
+	ghi_chu varchar(100),
 	primary key (ma_gia_han),
 	foreign key (ma_phieu_du_thi) references PhieuDuThi(ma_phieu_du_thi)
 );
@@ -191,7 +193,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF (
         SELECT COUNT(*) 
-        FROM GiaHan 
+        FROM exam_management_schema.GiaHan 
         WHERE ma_phieu_du_thi = NEW.ma_phieu_du_thi
 		AND trang_thai_gia_han = 'Chấp nhận'
     ) >= 2 THEN
@@ -203,7 +205,7 @@ $$ LANGUAGE plpgsql;
 
 -- Gắn trigger vào bảng GiaHan
 CREATE TRIGGER trg_check_gia_han_limit
-BEFORE INSERT ON GiaHan
+BEFORE INSERT ON exam_management_schema.GiaHan
 FOR EACH ROW
 EXECUTE FUNCTION check_gia_han_limit();
 
@@ -216,26 +218,26 @@ BEGIN
     IF TG_OP = 'INSERT' THEN
         lich_thi_id := NEW.ma_lich_thi;
 
-        UPDATE LichThi
+        UPDATE exam_management_schema.LichThi
         SET so_luong_dang_ky_con_lai = so_luong_dang_ky_con_lai - 1
         WHERE ma_lich_thi = lich_thi_id;
     ELSIF TG_OP = 'DELETE' THEN
         lich_thi_id := OLD.ma_lich_thi;
 
-        UPDATE LichThi
+        UPDATE exam_management_schema.LichThi
         SET so_luong_dang_ky_con_lai = so_luong_dang_ky_con_lai + 1
         WHERE ma_lich_thi = lich_thi_id;
     END IF;
 
     SELECT suc_chua INTO total_capacity
-    FROM PhongThi
-    WHERE ma_phong_thi = (SELECT ma_phong_thi FROM LichThi WHERE ma_lich_thi = lich_thi_id);
+    FROM exam_management_schema.PhongThi
+    WHERE ma_phong_thi = (SELECT ma_phong_thi FROM exam_management_schema.LichThi WHERE ma_lich_thi = lich_thi_id);
 
     IF total_capacity IS NULL THEN
         RAISE EXCEPTION 'Không tìm thấy sức chứa cho phòng thi của lịch thi %', lich_thi_id;
     END IF;
 
-    IF (SELECT so_luong_dang_ky_con_lai FROM LichThi WHERE ma_lich_thi = lich_thi_id) < 0 THEN
+    IF (SELECT so_luong_dang_ky_con_lai FROM exam_management_schema.LichThi WHERE ma_lich_thi = lich_thi_id) < 0 THEN
         RAISE EXCEPTION 'Số lượng đăng ký còn lại không thể âm cho lịch thi %', lich_thi_id;
     END IF;
 

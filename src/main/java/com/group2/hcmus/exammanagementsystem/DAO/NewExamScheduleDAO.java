@@ -14,8 +14,9 @@ public class NewExamScheduleDAO {
         List<NewExamScheduleDTO> schedules = new ArrayList<>();
 
         String query = """
-            SELECT * FROM exam_management_schema.LichThi
-            WHERE so_luong_thi_sinh_toi_da > so_luong_dang_ky
+            SELECT lt.ma_lich_thi, lt.ma_phong_thi, lt.ma_chung_chi, DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi, lt.so_luong_dang_ky_con_lai
+            FROM exam_management_schema.LichThi lt
+            WHERE so_luong_dang_ky_con_lai > 0
         """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -26,12 +27,11 @@ public class NewExamScheduleDAO {
                 schedules.add(new NewExamScheduleDTO(
                         rs.getInt("ma_lich_thi"),
                         rs.getInt("ma_phong_thi"),
-                        rs.getInt("ma_giam_thi"),
+                        rs.getInt("ma_chung_chi"),
                         rs.getDate("ngay_thi").toLocalDate(),
                         rs.getTime("gio_thi").toLocalTime(),
                         rs.getString("dia_diem_thi"),
-                        rs.getInt("so_luong_thi_sinh_toi_da"),
-                        rs.getInt("so_luong_dang_ky")
+                        rs.getInt("so_luong_dang_ky_con_lai")
                 ));
             }
 
@@ -46,7 +46,7 @@ public class NewExamScheduleDAO {
         String update = """
             UPDATE exam_management_schema.ChiTietDangKy
             SET ma_lich_thi = ?
-            WHERE ma_phieu_du_thi = ?
+            WHERE ma_phieu_dang_ky = ?
         """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -63,9 +63,10 @@ public class NewExamScheduleDAO {
     public List<NewExamScheduleDTO> searchSchedulesByDateRange(LocalDate from, LocalDate to) {
         List<NewExamScheduleDTO> schedules = new ArrayList<>();
 
-        String query = "SELECT * FROM exam_management_schema.LichThi " +
-                "WHERE ngay_thi BETWEEN ? AND ? " +
-                "AND so_luong_thi_sinh_toi_da > so_luong_dang_ky";
+        String query = "SELECT lt.ma_lich_thi, lt.ma_phong_thi, lt.ma_chung_chi, DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi, lt.so_luong_dang_ky_con_lai " +
+                "FROM exam_management_schema.LichThi lt " +
+                "WHERE DATE(lt.ngay_gio_thi) BETWEEN ? AND ? " +
+                "AND so_luong_dang_ky_con_lai > 0";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -78,12 +79,11 @@ public class NewExamScheduleDAO {
                 schedules.add(new NewExamScheduleDTO(
                         rs.getInt("ma_lich_thi"),
                         rs.getInt("ma_phong_thi"),
-                        rs.getInt("ma_giam_thi"),
+                        rs.getInt("ma_chung_chi"),
                         rs.getDate("ngay_thi").toLocalDate(),
                         rs.getTime("gio_thi").toLocalTime(),
                         rs.getString("dia_diem_thi"),
-                        rs.getInt("so_luong_thi_sinh_toi_da"),
-                        rs.getInt("so_luong_dang_ky")
+                        rs.getInt("so_luong_dang_ky_con_lai")
                 ));
             }
 

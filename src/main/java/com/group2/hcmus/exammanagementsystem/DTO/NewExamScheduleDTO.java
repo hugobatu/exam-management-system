@@ -6,33 +6,30 @@ import java.time.LocalTime;
 public class NewExamScheduleDTO {
     private int maLichThi;
     private int maPhongThi;
-    private int maGiamThi;
+    private int maChungChi;
     private LocalDate ngayThi;
     private LocalTime gioThi;
     private String diaDiemThi;
-    private int soLuongToiDa;
-    private int soLuongDangKy;
+    private int soLuongConLai;
 
-    public NewExamScheduleDTO(int maLichThi, int maPhongThi, int maGiamThi,
+    public NewExamScheduleDTO(int maLichThi, int maPhongThi, int maChungChi,
                            LocalDate ngayThi, LocalTime gioThi,
-                           String diaDiemThi, int soLuongToiDa, int soLuongDangKy) {
+                           String diaDiemThi, int soLuongConLai) {
         this.maLichThi = maLichThi;
         this.maPhongThi = maPhongThi;
-        this.maGiamThi = maGiamThi;
+        this.maChungChi = maChungChi;
         this.ngayThi = ngayThi;
         this.gioThi = gioThi;
         this.diaDiemThi = diaDiemThi;
-        this.soLuongToiDa = soLuongToiDa;
-        this.soLuongDangKy = soLuongDangKy;
+        this.soLuongConLai = soLuongConLai;
     }
 
     // Getters
     public int getMaLichThi() { return maLichThi; }
     public int getMaPhongThi() { return maPhongThi; }
-    public int getMaGiamThi() { return maGiamThi; }
+    public int getMaChungChi() { return maChungChi; }
     public LocalDate getNgayThi() { return ngayThi; }
     public LocalTime getGioThi() { return gioThi; }
     public String getDiaDiemThi() { return diaDiemThi; }
-    public int getSoLuongToiDa() { return soLuongToiDa; }
-    public int getSoChoTrong() { return soLuongToiDa - soLuongDangKy; }
+    public int getSoLuongConLai() { return soLuongConLai; }
 }

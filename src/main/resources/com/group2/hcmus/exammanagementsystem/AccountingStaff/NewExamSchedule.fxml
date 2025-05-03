@@ -127,13 +127,12 @@
                                 <VBox spacing="10.0">
                                     <TableView fx:id="scheduleTable" prefHeight="200.0">
                                         <columns>
-                                            <TableColumn fx:id="maLichThiColumn" prefWidth="80.0" text="Mã lịch thi" />
-                                            <TableColumn fx:id="ngayThiColumn" prefWidth="100.0" text="Ngày thi" />
-                                            <TableColumn fx:id="gioThiColumn" prefWidth="80.0" text="Giờ thi" />
-                                            <TableColumn fx:id="diaChiColumn" prefWidth="120.0" text="Địa điểm thi" />
-                                            <TableColumn fx:id="soLuongDKColumn" prefWidth="80.0" text="Số lượng đã ĐK" />
-                                            <TableColumn fx:id="soLuongMaxColumn" prefWidth="80.0" text="Sức chứa tối đa" />
-                                            <TableColumn fx:id="trangThaiColumn" prefWidth="80.0" text="Trạng thái" />
+                                            <TableColumn fx:id="maLichThiColumn" prefWidth="76.00002920627594" text="Mã lịch thi" />
+                                            <TableColumn fx:id="maChungChiColumn" prefWidth="86.40001678466797" text="Mã chứng chỉ" />
+                                            <TableColumn fx:id="ngayThiColumn" prefWidth="98.40003967285156" text="Ngày thi" />
+                                            <TableColumn fx:id="gioThiColumn" prefWidth="65.60003662109375" text="Giờ thi" />
+                                            <TableColumn fx:id="diaChiColumn" minWidth="0.0" prefWidth="189.5999755859375" text="Địa điểm thi" />
+                                 <TableColumn fx:id="soLuongCLColumn" prefWidth="76.0" text="SL còn lại" />
                                         </columns>
                                     </TableView>
                                     <Label text="* Chọn một lịch thi từ bảng trên">

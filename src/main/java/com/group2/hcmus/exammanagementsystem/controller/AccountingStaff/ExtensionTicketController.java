@@ -92,19 +92,10 @@ public class ExtensionTicketController implements Initializable {
 
     private void initializeComboBoxes() {
         // Add extension types
-        loaiGiaHanComboBox.getItems().addAll(
-                "Trường hợp thông thường",
-                "Trường hợp đặc biệt"
-        );
+        loaiGiaHanComboBox.getItems().addAll();
 
         // Add extension reasons
-        lyDoGiaHanComboBox.getItems().addAll(
-                "Bệnh tật",
-                "Tai nạn",
-                "Tang sự",
-                "Công vụ",
-                "Lý do khác"
-        );
+        lyDoGiaHanComboBox.getItems().addAll();
     }
 
     private void setupComboBoxListeners() {
