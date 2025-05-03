@@ -36,7 +36,7 @@
                         <TableColumn fx:id="ngayCapColumn" prefWidth="120.0" text="Ngày cấp" />
                         <TableColumn fx:id="ngayHetHanColumn" prefWidth="120.0" text="Ngày hết hạn" />
                         <TableColumn fx:id="donViCapColumn" prefWidth="200.0" text="Đơn vị cấp" />
-                        <TableColumn fx:id="trangThaiNhanColumn" prefWidth="170.0" text="Trạng thái nhận" />
+                        <TableColumn fx:id="trangThaiNhanColumn" prefWidth="170.0" text="Trạng thái nhận" editable="true"/>
                     </columns>
                 </TableView>
             </children>

@@ -133,5 +133,18 @@ public class BangTinhDAO {
             e.printStackTrace();
             return false;
         }
+
+    }
+    public boolean updateTrangThaiNhan(int maChungChiCap, String trangThaiNhan) {
+        String sql = "UPDATE BangTinh SET trang_thai_nhan = ? WHERE ma_chung_chi_cap = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, trangThaiNhan);
+            stmt.setInt(2, maChungChiCap);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

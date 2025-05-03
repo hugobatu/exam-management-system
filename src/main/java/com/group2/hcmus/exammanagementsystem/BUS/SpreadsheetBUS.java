@@ -76,4 +76,7 @@ public class SpreadsheetBUS {
     public List<BangTinhDTO> searchBangTinh(String searchTerm) {
         return bangTinhDAO.search(searchTerm);
     }
+    public boolean updateTrangThaiNhan(int maChungChiCap, String trangThaiNhan) {
+        return bangTinhDAO.updateTrangThaiNhan(maChungChiCap, trangThaiNhan);
+    }
 }
