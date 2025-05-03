@@ -30,11 +30,12 @@
             </HBox>
             <TableView prefHeight="516.0" prefWidth="690.0">
                <columns>
-                  <TableColumn prefWidth="125.59994351863861" text="Mã chứng chỉ" />
-                  <TableColumn prefWidth="149.60004425048828" text="Tên chứng chỉ" />
-                  <TableColumn prefWidth="154.39996337890625" text="Loại Chứng chỉ" />
-                  <TableColumn prefWidth="154.39996337890625" text="Lệ phí thi" />
-                  <TableColumn prefWidth="104.0" text="Hành động" />
+                  <TableColumn prefWidth="87.99999845027924" text="Mã hóa đơn" />
+                  <TableColumn prefWidth="140.79999542236328" text="Ngày thanh toán" />
+                  <TableColumn prefWidth="138.4000244140625" text="Hình thức thanh toán" />
+                  <TableColumn prefWidth="83.20001220703125" text="Trạng thái" />
+                  <TableColumn minWidth="0.0" prefWidth="88.79995727539062" text="Tiền giảm giá" />
+                  <TableColumn prefWidth="151.20001220703125" text="Tổng tiền" />
                </columns>
             </TableView>
          </children>
