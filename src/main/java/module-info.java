@@ -15,9 +15,9 @@ module com.group2.hcmus.exammanagementsystem {
     opens com.group2.hcmus.exammanagementsystem.controller to javafx.fxml;
     exports com.group2.hcmus.exammanagementsystem.controller;
 
-    // Receptionist
-//    opens com.group2.hcmus.exammanagementsystem.controller.Receptionist to javafx.fxml;
-//    exports  com.group2.hcmus.exammanagementsystem.controller.Receptionist;
+//     Receptionist
+    opens com.group2.hcmus.exammanagementsystem.controller.Receptionist to javafx.fxml;
+    exports  com.group2.hcmus.exammanagementsystem.controller.Receptionist;
 
     exports com.group2.hcmus.exammanagementsystem.controller.Receptionist.FreeRegistration;
     opens com.group2.hcmus.exammanagementsystem.controller.Receptionist.FreeRegistration to javafx.fxml;

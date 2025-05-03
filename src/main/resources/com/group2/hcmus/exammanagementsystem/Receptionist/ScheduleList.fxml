@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group2.hcmus.exammanagementsystem.controller.Receptionist.ScheduleListController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="55.0" prefWidth="333.0" style="-fx-padding: 20 0 0 20;" text="Tra cứu lịch thi">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="700.0" spacing="20.0" style="-fx-padding: 20;">
+               <children>
+                  <TextField alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="190.0" promptText="Tìm kiếm" />
+               </children>
+            </HBox>
+            <AnchorPane prefHeight="490.0" prefWidth="660.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <TableView fx:id="scheduleTable" layoutX="39.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="405.0" prefWidth="580.0">
+                     <columns>
+                        <TableColumn fx:id="ngaygiothi" prefWidth="140.0" text="Ngày giờ thi" />
+                        <TableColumn fx:id="diadiemthi" prefWidth="100.0" text="Địa điểm thi" />
+                        <TableColumn fx:id="phongthi" prefWidth="90.0" text="Phòng thi" />
+                        <TableColumn fx:id="sl_dangky" text="SL đã đk" />
+                        <TableColumn fx:id="sl_toida" text="SL tối đa" />
+                        <TableColumn fx:id="chungchi" prefWidth="90.0" text="Chứng chỉ" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
