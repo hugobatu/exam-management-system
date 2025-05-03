@@ -8,7 +8,6 @@ public class ExtensionTicketDAO {
     private Connection connection;
 
     public ExtensionTicketDAO() {
-        // Initialize connection from a connection manager or pool
         try {
             // Replace with your actual connection initialization
             this.connection = DriverManager.getConnection(

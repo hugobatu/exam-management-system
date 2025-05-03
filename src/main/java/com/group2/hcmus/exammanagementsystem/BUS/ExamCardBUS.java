@@ -12,10 +12,9 @@ public class ExamCardBUS {
     public List<ExamCardDTO> searchByExamCardId(int maPhieuDuThi) {
         List<ExamCardDTO> result = new ArrayList<>();
         String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
-                   lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt
-            JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_phieu_du_thi = ctdk.ma_phieu_du_thi
+            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
+                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
+            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
             JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
             JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
             WHERE pdt.ma_phieu_du_thi = ?
@@ -41,10 +40,9 @@ public class ExamCardBUS {
     public List<ExamCardDTO> searchByRegistrationNumber(int soBaoDanh) {
         List<ExamCardDTO> result = new ArrayList<>();
         String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
-                   lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt
-            JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_phieu_du_thi = ctdk.ma_phieu_du_thi
+            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
+                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
+            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
             JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
             JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
             WHERE pdt.so_bao_danh = ?
@@ -70,10 +68,9 @@ public class ExamCardBUS {
     public List<ExamCardDTO> searchByName(String name) {
         List<ExamCardDTO> result = new ArrayList<>();
         String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
-                   lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt
-            JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_phieu_du_thi = ctdk.ma_phieu_du_thi
+            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
+                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
+            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
             JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
             JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
             WHERE ts.ho_ten ILIKE ?
@@ -99,10 +96,9 @@ public class ExamCardBUS {
     public List<ExamCardDTO> getAllExamCards() {
         List<ExamCardDTO> result = new ArrayList<>();
         String query = """
-            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh, 
-                   lt.ngay_thi, lt.gio_thi, lt.dia_diem_thi
-            FROM exam_management_schema.PhieuDuThi pdt
-            JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_phieu_du_thi = ctdk.ma_phieu_du_thi
+            SELECT pdt.ma_phieu_du_thi, pdt.so_bao_danh, ts.ho_ten, ts.ngay_sinh,
+                DATE(lt.ngay_gio_thi) AS ngay_thi, CAST(lt.ngay_gio_thi AS TIME) AS gio_thi, lt.dia_diem_thi
+            FROM exam_management_schema.PhieuDuThi pdt JOIN exam_management_schema.ChiTietDangKy ctdk ON pdt.ma_chi_tiet = ctdk.ma_chi_tiet
             JOIN exam_management_schema.ThiSinh ts ON ctdk.ma_thi_sinh = ts.ma_thi_sinh
             JOIN exam_management_schema.LichThi lt ON ctdk.ma_lich_thi = lt.ma_lich_thi
         """;

@@ -36,12 +36,11 @@ public class NewExamScheduleController implements Initializable {
 
     @FXML private TableView<NewExamScheduleDTO> scheduleTable;
     @FXML private TableColumn<NewExamScheduleDTO, Integer> maLichThiColumn;
+    @FXML private TableColumn<NewExamScheduleDTO, Integer> maChungChiColumn;
     @FXML private TableColumn<NewExamScheduleDTO, LocalDate> ngayThiColumn;
     @FXML private TableColumn<NewExamScheduleDTO, LocalTime> gioThiColumn;
     @FXML private TableColumn<NewExamScheduleDTO, String> diaChiColumn;
-    @FXML private TableColumn<NewExamScheduleDTO, Integer> soLuongDKColumn;
-    @FXML private TableColumn<NewExamScheduleDTO, Integer> soLuongMaxColumn;
-    @FXML private TableColumn<NewExamScheduleDTO, String> trangThaiColumn;
+    @FXML private TableColumn<NewExamScheduleDTO, Integer> soLuongCLColumn;
 
     @FXML private TextField maLichThiMoiTextField;
     @FXML private TextField ngayThiMoiTextField;
@@ -64,12 +63,11 @@ public class NewExamScheduleController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Map table columns
         maLichThiColumn.setCellValueFactory(new PropertyValueFactory<>("maLichThi"));
+        maChungChiColumn.setCellValueFactory(new PropertyValueFactory<>("maChungChi"));
         ngayThiColumn.setCellValueFactory(new PropertyValueFactory<>("ngayThi"));
         gioThiColumn.setCellValueFactory(new PropertyValueFactory<>("gioThi"));
         diaChiColumn.setCellValueFactory(new PropertyValueFactory<>("diaDiemThi"));
-        soLuongDKColumn.setCellValueFactory(new PropertyValueFactory<>("soLuongDangKy"));
-        soLuongMaxColumn.setCellValueFactory(new PropertyValueFactory<>("soLuongToiDa"));
-        trangThaiColumn.setCellValueFactory(new PropertyValueFactory<>("trangThai"));
+        soLuongCLColumn.setCellValueFactory(new PropertyValueFactory<>("soLuongConLai"));
 
         scheduleTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         scheduleTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
