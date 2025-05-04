@@ -3,6 +3,7 @@ package com.group2.hcmus.exammanagementsystem.controller;
 import com.group2.hcmus.exammanagementsystem.DatabaseConnection;
 import com.group2.hcmus.exammanagementsystem.controller.Receptionist.ExamExtension.LookUpExamCardController;
 import com.group2.hcmus.exammanagementsystem.controller.Receptionist.FreeRegistration.Step1Controller;
+import com.group2.hcmus.exammanagementsystem.controller.Receptionist.UnitRegistration.UnitStep1Controller;
 import com.group2.hcmus.exammanagementsystem.utils.SupportingUtilities;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class DashboardController {
         switch (role) {
             case "Reception":
                 sidebarButtons.add(createButton("Đăng ký tự do", "#FreeRegistration"));
-                sidebarButtons.add(createButton("Đăng ký đơn vị", "#ThanhToan"));
+                sidebarButtons.add(createButton("Đăng ký đơn vị", "#UnitRegistration"));
                 sidebarButtons.add(createButton("Lịch thi", "#TimKiemLichThi"));
                 sidebarButtons.add(createButton("Lập phiếu gia hạn", "#LapPhieuGiaHan"));
                 break;
@@ -135,6 +136,15 @@ public class DashboardController {
                 Step1Controller controller = loader.getController();
                 controller.setMainContainer(mainInfoContainer); // passing main info inside the stackpane
                 mainInfoContainer.getChildren().setAll(step1);
+                break;
+            case "#UnitRegistration":
+                FXMLLoader unit = new FXMLLoader(getClass().getResource("/com/group2/hcmus/exammanagementsystem/Receptionist/UnitRegistration/Step1.fxml"));
+                Parent unitStep1 = unit.load();
+
+                UnitStep1Controller step1Controller = unit.getController();
+                step1Controller.setMainContainer(mainInfoContainer); // passing main info inside the stackpane
+                mainInfoContainer.getChildren().setAll(unitStep1);
+
                 break;
             case "#ThanhToan":
                 content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/group2/hcmus/exammanagementsystem/AccountingStaff/Payment.fxml")));
